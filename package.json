@@ -1,0 +1,29 @@
+{
+  "name": "test-cron-jobs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r dotenv/config ./src/index.js",
+    "dev": "nodemon -r dotenv/config ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csheanon1023/test-cron-jobs.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/csheanon1023/test-cron-jobs/issues"
+  },
+  "homepage": "https://github.com/csheanon1023/test-cron-jobs#readme",
+  "dependencies": {
+    "discord.js": "^12.2.0",
+    "dotenv": "^10.0.0",
+    "node-cron": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
