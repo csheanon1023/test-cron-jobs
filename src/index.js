@@ -21,14 +21,10 @@ const PREFIX = "$";
 client.on('ready', () => {
   console.log(`${client.user.tag} has logged in.`);
 });
+let channel;
 client.login(process.env.DISCORDJS_BOT_TOKEN).then(async () => {
-  const channel = await client.channels.fetch('883775161478832169');
+  channel = await client.channels.fetch('883775161478832169');
   channel.send(`${getCurrentTime()} Process started`);
-});
-
-const channel;
-(async () => {
-  const channel = await client.channels.fetch('883775161478832169');
 });
 
 let countPre = 0;
@@ -42,11 +38,11 @@ cron.schedule('50-59 9 * * 0,1,5,6', async () => {
     console.log("At each minute between 50-59 of the hours 9:00 on Sun, Mon, Fri, and Sat");
     countPre ++;
     if(countPre > 5)
-      flagPre = flase;
-    channel.send(`\`\`\`${currentdate} \nAt each minute between 50-59 of the hours 9:00 on Sun, Mon, Fri, and Sat\`\`\``);
+      flagPre = false;
+    channel.send(`\`\`\`${currentdate} \nAt each minute between 50-59 of the hours 9:00 on Sun, Mon, Fri, and Sat\ncount:${countPre}\`\`\``);
   }
   else {
-    channel.send(`${getCurrentTime()} Didn't run`);
+    channel.send(`${getCurrentTime()} Didn't run, count:${countPre}`);
   }
 });
 
@@ -56,26 +52,40 @@ cron.schedule('0-10 10 * * 0,1,5,6', async () => {
     console.log("At each minute between 00-10 of the hours 10:00 on Sun, Mon, Fri, and Sat");
     countPost ++;
     if(countPost > 5)
-      flagPost = flase;
-    channel.send(`\`\`\`${currentdate} \nAt each minute between 00-10 of the hours 10:00 on Sun, Mon, Fri, and Sat\`\`\``);
+      flagPost = false;
+    channel.send(`\`\`\`${currentdate} \nAt each minute between 00-10 of the hours 10:00 on Sun, Mon, Fri, and Sat\ncount:${countPre}\`\`\``);
   }
   else {
-    channel.send(`${getCurrentTime()} Didn't run`);
+    channel.send(`${getCurrentTime()} Didn't run, count:${countPre}`);
   }
 });
 
-let c1 = 0;
-let f1 = true;
-cron.schedule('* * * * *', async () => {
-  if(f1) {
-    var currentdate = getCurrentTime();
-    console.log("At each minute between 00-10 of the hours 10:00 on Sun, Mon, Fri, and Sat");
-    c1 ++;
-    if(c1 > 5)
-      f1 = flase;
-    channel.send(`\`\`\`${currentdate} \nAt each minute between 00-10 of the hours 10:00 on Sun, Mon, Fri, and Sat\`\`\``);
-  }
-  else {
-    channel.send(`${getCurrentTime()} Didn't run`);
-  }
+cron.schedule('0 11 * * 0,1,5,6', async () => {
+  var currentdate = getCurrentTime();
+  console.log(`Reset counts and flags at ${currentdate}`)
+  channel.send(`Reset counts and flags at ${currentdate}`);
+  countPre = 0;
+  countPost = 0;
+  flagPre = true;
+  flagPost = true;
+});
+
+cron.schedule('0 12 * * 0,1,5,6', async () => {
+  var currentdate = getCurrentTime();
+  console.log(`Reset counts and flags at ${currentdate}`)
+  channel.send(`Reset counts and flags at ${currentdate}`);
+  countPre = 0;
+  countPost = 0;
+  flagPre = true;
+  flagPost = true;
+});
+
+cron.schedule('0 13 * * 0,1,5,6', async () => {
+  var currentdate = getCurrentTime();
+  console.log(`Reset counts and flags at ${currentdate}`)
+  channel.send(`Reset counts and flags at ${currentdate}`);
+  countPre = 0;
+  countPost = 0;
+  flagPre = true;
+  flagPost = true;
 });
